@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --ignore src/index.test.js,src/public src/index.js",
-    "test": "nodemon src/index.test.js"
+    "start": "nodemon --config ./config/server_task.json ./src/server.js",
+    "test": "nodemon --config ./config/test_task.json ./src/server.test.js"
   },
   "keywords": [
     "nodejs",
@@ -19,7 +19,5 @@
   "devDependencies": {
     "nodemon": "^2.0.19",
     "undici": "^5.8.1"
-  },
-  "dependencies": {
   }
 }

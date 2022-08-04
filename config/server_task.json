@@ -1,0 +1,3 @@
+{
+  "ignore": ["./src/public", "./src/server.test.js", "./node_modules", "package-lock.json", "yarn.lock", "./notes"]
+}

@@ -1,0 +1,4 @@
+{
+  "delay": 250,
+  "ignore": ["./node_modules", "package-lock.json", "yarn.lock", "./notes"]
+}
