@@ -41,7 +41,10 @@ function handleMimeType(res, filePath) {
     res.writeHead(200, { "Content-Type": "text/plain" });
     return;
   }
-  res.writeHead(200, { "Content-Type": extentionMap[extention] });
+  res.writeHead(200, {
+    "Content-Type": extentionMap[extention],
+    "Set-Cookie": `id=xxxx-xxxx-xxxx-xxxx; Expires=Thu, 22 Oct 2022 00:00:00 GMT; Secure; HttpOnly`,
+  });
 }
 
 // ===================================================
@@ -91,6 +94,10 @@ function methodNotAllowed(req, res) {
 // ===================================================
 const allowedMethods = ["HEAD", "CONNECT", "GET", "POST"];
 function handleRequest(req, res) {
+  // log all headers
+  // for (const key in req.headers) {
+  //   console.log(key, req.headers[key]);
+  // }
   if (!allowedMethods.includes(req.method)) {
     methodNotAllowed(res);
     return;
@@ -98,6 +105,9 @@ function handleRequest(req, res) {
   let file = req.url;
   if (file === "/") {
     file = "/public/index.html";
+  }
+  if (res.setHeader) {
+    res.setHeader("Cookie", ["foo=bar", "bar=baz"]);
   }
   streamFile(req, res, __dirname + file);
 }
@@ -126,13 +136,11 @@ async function startHttp(port = 8080) {
 
 function stopHttp() {
   return new Promise((resolve, reject) => {
-
-      server.close();
-      log("HTTP", "Server stopped");
-      server.on("close", (err, socket) => {
-        resolve(server);
-      });
-
+    server.close();
+    log("HTTP", "Server stopped");
+    server.on("close", (err, socket) => {
+      resolve(server);
+    });
   });
 }
 
@@ -145,13 +153,22 @@ function log(tag, ...t) {
   console.log(tag, ...t);
 }
 
+// ===================================================
+//       ERROR HANDLING
+// ===================================================
+process.on("unhandledRejection", (error) => {
+  log("unhandledRejection", error.toString());
+  throw error;
+});
+
+process.on("uncaughtException", (error) => {
+  log("uncaughtException", error.toString());
+  throw error;
+});
+
 // ========================================================
 // EXPORTS
 // ========================================================
-// startHttp(process.argv);
+// startHttp(8080);
 
 export { startHttp, stopHttp };
-
-
-
-
