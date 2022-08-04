@@ -25,6 +25,7 @@ npm test
 1. Start a `mods` folder that can add `websockets` and `sse`.
 1. Add html page examples for `forms` and `uploads`.
 1. Add autoreload when a page changes
+1. HTTP Only Cookie example
 
 # Contributing
 1. https://github.com/timcash
@@ -38,5 +39,5 @@ npm test
 ## 1 on 1 maths and coding training $50 per hour
 1. https://buy.stripe.com/4gw29YguIc2Of7i7sv
 
-## Computaional Media Full stack code school $15,000
+## Computaional Media code school $15,000
 1. https://buy.stripe.com/aEUaGudiwaYK2kwaEI
