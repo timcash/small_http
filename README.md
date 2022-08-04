@@ -25,6 +25,7 @@ npm test
 1. Start a `mods` folder that can add `websockets` and `sse`.
 1. Add html page examples for `forms` and `uploads`.
 1. Add autoreload when a page changes
+1. HTTP Only Cookie example
 
 # Contributing
 1. https://github.com/timcash
