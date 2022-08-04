@@ -38,5 +38,5 @@ npm test
 ## 1 on 1 maths and coding training $50 per hour
 1. https://buy.stripe.com/4gw29YguIc2Of7i7sv
 
-## Computaional Media Full stack code school $15,000
+## Computaional Media code school $15,000
 1. https://buy.stripe.com/aEUaGudiwaYK2kwaEI
