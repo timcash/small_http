@@ -1,0 +1,25 @@
+{
+  "name": "small_http",
+  "version": "1.0.0",
+  "description": "small http server in node.js with a test",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon --ignore src/index.test.js,src/public src/index.js",
+    "test": "nodemon src/index.test.js"
+  },
+  "keywords": [
+    "nodejs",
+    "http",
+    "simple",
+    "test"
+  ],
+  "author": "timcash",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "undici": "^5.8.1"
+  },
+  "dependencies": {
+  }
+}
