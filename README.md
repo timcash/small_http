@@ -1,12 +1,15 @@
 # small_http
 ## Motivation
-Other framworks and tools import so many tools and technologies that they form islands of code. typescript, jest, react, webpack, etc... we can do more with less code.
+1. This system is designed to be readable and hackable.
+1. Framworks import so many tools and technologies that they form islands of code. Hiding the underlying simplicity.
+1. To have a small piece of code to learn about networking and the http (protocol)
+
 ## Non-features
 A small set of tools to get started with a nodejs http server. More like a template.
 1. server uses `node:http`
 1. great for learning about testing and http servers at a lower level
 1. easy to inspect and modify the raw streams
-1. testing uses the built in `node:test` and `undici` for requests
+1. testing uses the built in `node:test` and `undici` for requests for compatibility with other runtimes
 1. examples of async and stream styles in a running server (node.js superpower)
 
 # install
@@ -26,6 +29,12 @@ npm test
 1. Add html page examples for `forms` and `uploads`.
 1. Add autoreload when a page changes
 1. HTTP Only Cookie example
+
+# external tools
+Including a few external tools to help learn about the larger web ecosystem and popular testing strategies.
+1. playwright
+1. nodemon
+1. undici
 
 # Contributing
 1. https://github.com/timcash
