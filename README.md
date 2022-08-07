@@ -32,11 +32,11 @@ npm test
 1. Add html page examples for `forms` and `uploads`.
 1. Add autoreload when a page changes
 
-# external tools
-Including a few external tools to help learn about the larger web ecosystem and popular testing strategies.
-1. playwright
-1. nodemon
-1. undici
+# external test tools
+Including a few external testing tools to help learn about the larger web ecosystem and popular testing strategies.
+1. playwright https://github.com/microsoft/playwright
+1. nodemon https://github.com/remy/nodemon
+1. undici https://github.com/nodejs/undici
 
 # Contributing
 1. https://github.com/timcash
