@@ -1,3 +1,6 @@
+// ========================================================
+// IMPORTS
+// ========================================================
 import http from "node:http";
 import path, { resolve } from "node:path";
 import { createReadStream } from "node:fs";
@@ -106,9 +109,7 @@ function handleRequest(req, res) {
   if (file === "/") {
     file = "/public/index.html";
   }
-  if (res.setHeader) {
-    res.setHeader("Cookie", ["foo=bar", "bar=baz"]);
-  }
+
   streamFile(req, res, __dirname + file);
 }
 
@@ -147,7 +148,6 @@ function stopHttp() {
 // ========================================================
 // CONVIENIENCE FUNCTIONS
 // ========================================================
-
 function log(tag, ...t) {
   tag = tag.toUpperCase();
   console.log(tag, ...t);

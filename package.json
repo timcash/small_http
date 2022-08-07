@@ -2,11 +2,11 @@
   "name": "small_http",
   "version": "1.0.0",
   "description": "small http server in node.js with a test",
-  "main": "index.js",
+  "main": "small_http.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --config ./config/server_task.json ./src/server.js",
-    "test": "nodemon --no-warnings --config ./config/test_task.json ./src/server.test.js"
+    "start": "nodemon --config ./config/server_task.json ./src/small_http.js",
+    "test": "nodemon --no-warnings --config ./config/test_task.json ./src/small_http.test.js"
   },
   "keywords": [
     "nodejs",

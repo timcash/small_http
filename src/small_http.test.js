@@ -1,22 +1,22 @@
 import { request } from "undici";
-import {deepEqual} from "node:assert";
+import { deepEqual } from "node:assert";
 import test from "node:test";
 import { chromium } from "playwright";
 import { devices } from "@playwright/test";
-import { startHttp, stopHttp } from "./server.js"
+import { startHttp, stopHttp } from "./small_http.js";
 
 // ========================================================
 // START SERVER
 // ========================================================
-test('server starts', async () => {
-    const server = await startHttp();
-    deepEqual(server.listening, true);
+test("server starts", async () => {
+  const server = await startHttp();
+  deepEqual(server.listening, true);
 });
 
 // ========================================================
 // SIMPLE GET REQUEST
 // ========================================================
-test('get index.html from http server', async () => {
+test("get index.html from http server", async () => {
   const { statusCode, headers, trailers, body } = await request(
     "http://localhost:8080/"
   );
@@ -36,15 +36,15 @@ test('get index.html from http server', async () => {
 // ========================================================
 // TEST UI WITH REAL BROWSER PLAYWRIGHT
 // ========================================================
-test('browser goto index.html and get a secure cookie', async () => {
+test("browser goto index.html and get a secure cookie", async () => {
   const browser = await chromium.launch({
     // headless: false,
     // slowMo: 500,
     // devtools: true,
   });
-  const iPhone = devices['iPhone 13 Pro Max'];
+  const iPhone = devices["iPhone 13 Pro Max"];
   const context = await browser.newContext({
-    ...iPhone
+    ...iPhone,
   });
 
   // go to page
@@ -57,16 +57,23 @@ test('browser goto index.html and get a secure cookie', async () => {
   const idCookie = cookies.find((cookie) => cookie.name === "id");
   deepEqual(idCookie.secure, true);
   deepEqual(idCookie.sameSite, "Lax");
-
-  // screenshot page
   await page.screenshot({ path });
+
+  // await page.goto("https://site.com");
+  // await page.locator('textarea[name="message"]').click();
+  // await page.locator('textarea[name="message"]').fill("love you");
+  // await page.locator('[placeholder="name"]').click();
+  // await page.locator('[placeholder="name"]').fill("tim");
+  // await page.locator('button:has-text("Send")').click();
+  // await expect(page).toHaveURL("https://site.com/api/email");
+  // await page.screenshot({ path });
   await browser.close();
 });
 
 // ========================================================
 // STOP SERVER
 // ========================================================
-test('stop the server', async () => {
+test("stop the server", async () => {
   const server = await stopHttp();
   deepEqual(server.listening === false, true);
 });
