@@ -1,4 +1,5 @@
-# small_http
+
+# small_http 初心
 ## Motivation
 1. This system is designed to be readable and hackable.
 1. Framworks import so many tools and technologies that they form islands of code. Hiding the underlying simplicity.
@@ -22,13 +23,14 @@ run the test suite in watch mode
 ```sh
 npm test
 ```
+# Completed PRs
+1. ✅ HTTP Only Cookie example
 
 # Looking for PRs 
-1. Help make things more clear and help with docs. 
+1. Improve clarity of docs. 
 1. Start a `mods` folder that can add `websockets` and `sse`.
 1. Add html page examples for `forms` and `uploads`.
 1. Add autoreload when a page changes
-1. HTTP Only Cookie example
 
 # external tools
 Including a few external tools to help learn about the larger web ecosystem and popular testing strategies.
