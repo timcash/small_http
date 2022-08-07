@@ -1,8 +1,19 @@
 // ========================================================
+// SMALL_HTTP
+// ========================================================
+// by chromatic.systems
+// small http server
+// built with node.js and core libs
+// based on streams
+// direct access to headers, mimetype and cookies
+// add mods for websockets and server sent events
+// import startHttp(:port), stopHttp() to get started
+
+// ========================================================
 // IMPORTS
 // ========================================================
 import http from "node:http";
-import path, { resolve } from "node:path";
+import { extname, join } from "node:path";
 import { createReadStream } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
@@ -13,6 +24,11 @@ const __dirname = dirname(__filename);
 // STATE
 // ========================================================
 let server = undefined;
+
+// ========================================================
+// STARTUP
+// ========================================================
+// startHttp(process.argv[2]);
 
 // ===================================================
 //  MIME TYPE MAP
@@ -36,10 +52,10 @@ const extentionMap = {
 };
 
 // ===================================================
-//  MIME TYPE DETECTION
+// HEADER HANDLING
 // ===================================================
-function handleMimeType(res, filePath) {
-  const extention = path.extname(filePath);
+function handleHeaders(res, filePath) {
+  const extention = extname(filePath);
   if (!extentionMap[extention]) {
     res.writeHead(200, { "Content-Type": "text/plain" });
     return;
@@ -57,7 +73,7 @@ function handleMimeType(res, filePath) {
 function streamFile(req, res, relativefilePath) {
   const reader = createReadStream(relativefilePath);
   reader.on("open", () => {
-    handleMimeType(res, relativefilePath);
+    handleHeaders(res, relativefilePath);
   });
   reader.on("data", function (chunk) {
     res.write(chunk);
@@ -97,20 +113,25 @@ function methodNotAllowed(req, res) {
 // ===================================================
 const allowedMethods = ["HEAD", "CONNECT", "GET", "POST"];
 function handleRequest(req, res) {
-  // log all headers
+  // opitional access to headers
   // for (const key in req.headers) {
   //   console.log(key, req.headers[key]);
   // }
+
   if (!allowedMethods.includes(req.method)) {
     methodNotAllowed(res);
     return;
   }
+
+  // the only route we need to intercept is the root
+  // else we map 1:1 to the file system
   let file = req.url;
   if (file === "/") {
     file = "/public/index.html";
   }
 
-  streamFile(req, res, __dirname + file);
+  const fullPath = join(__dirname,file)
+  streamFile(req, res, fullPath);
 }
 
 // ===================================================
@@ -146,7 +167,7 @@ function stopHttp() {
 }
 
 // ========================================================
-// CONVIENIENCE FUNCTIONS
+// HELPER FUNCTIONS
 // ========================================================
 function log(tag, ...t) {
   tag = tag.toUpperCase();
@@ -154,7 +175,7 @@ function log(tag, ...t) {
 }
 
 // ===================================================
-//       ERROR HANDLING
+// "unhandled" ERROR HANDLING
 // ===================================================
 process.on("unhandledRejection", (error) => {
   log("unhandledRejection", error.toString());
@@ -169,6 +190,4 @@ process.on("uncaughtException", (error) => {
 // ========================================================
 // EXPORTS
 // ========================================================
-// startHttp(8080);
-
 export { startHttp, stopHttp };
