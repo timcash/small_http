@@ -38,17 +38,3 @@ Including a few external testing tools to help learn about the larger web ecosys
 1. nodemon https://github.com/remy/nodemon
 1. undici https://github.com/nodejs/undici
 
-# Contributing
-1. https://github.com/timcash
-1. https://github.com/mejia-code
-
-# Join us to learn more about building with computaional media.
-1. https://chromatic.systems
-1. https://timcash.io
-1. https://patimejia.com
-
-## 1 on 1 maths and coding training $50 per hour
-1. https://buy.stripe.com/4gw29YguIc2Of7i7sv
-
-## Computaional Media code school $15,000
-1. https://buy.stripe.com/aEUaGudiwaYK2kwaEI
